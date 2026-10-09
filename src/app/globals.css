@@ -1,0 +1,220 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   NOEMA — a palette lifted from how brains are actually stained.
+
+   Golgi silver impregnation reads magenta. Immunofluorescence
+   against GFP reads cyan. Melanin and lipofuscin read amber.
+   Vessels read arterial red. And every one of these is looked at
+   on a black field, because that is how a fluorescence scope
+   works. So: near-black ground, stain colours as the only
+   saturated things on screen.
+   ───────────────────────────────────────────────────────────── */
+
+@theme {
+  --color-ink: #06070b;
+  --color-tissue: #0b0d14;
+  --color-panel: #12141d;
+  --color-raised: #171a26;
+  --color-hair: #22262f;
+  --color-hair-lit: #343a4b;
+
+  --color-bone: #f2efe6;
+  --color-mute: #8b90a2;
+  --color-dim: #5d6273;
+
+  --color-golgi: #e2458b;
+  --color-gfp: #45e0c4;
+  --color-melanin: #f0b44a;
+  --color-vessel: #e8613f;
+
+  --font-display: var(--font-bodoni), "Times New Roman", serif;
+  --font-sans: var(--font-familjen), ui-sans-serif, system-ui, sans-serif;
+
+  /* Mass, not tweens. */
+  --ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-drift: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-ink);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01" 1;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-golgi) 40%, transparent);
+    color: var(--color-bone);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gfp);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Didone display type at small sizes falls apart — thin it out
+     is the wrong move; the fix is optical size, handled below. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Horizontal hairlines are the atlas grid. */
+  .rule {
+    border-top: 1px solid var(--color-hair);
+  }
+
+  @keyframes noema-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes noema-pop {
+    from {
+      opacity: 0;
+      transform: translate3d(0, -1rem, 0) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+
+  @keyframes noema-rise {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 2rem, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  /* Typing the wordmark's Greek second letter, once, on load. */
+  @keyframes noema-draw {
+    from {
+      stroke-dashoffset: 46;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-dim);
+  }
+
+  /* Body copy stays inside 68ch. Serif-adjacent measure can run
+     a little wider, which is why the philosophy pages get more. */
+  .prose-measure {
+    max-width: 68ch;
+  }
+  .prose-measure-wide {
+    max-width: 76ch;
+  }
+}
+
+@layer utilities {
+  /* The two hemispheres lean against each other in cold and warm.
+     Fixed so it never repaints during scroll. */
+  .hemisphere-wash {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        62rem 42rem at 12% -8%,
+        color-mix(in oklab, var(--color-gfp) 9%, transparent),
+        transparent 62%
+      ),
+      radial-gradient(
+        54rem 40rem at 92% 8%,
+        color-mix(in oklab, var(--color-golgi) 8%, transparent),
+        transparent 60%
+      ),
+      radial-gradient(
+        46rem 46rem at 50% 108%,
+        color-mix(in oklab, var(--color-melanin) 5%, transparent),
+        transparent 66%
+      );
+  }
+
+  /* Grain belongs to the lens, not the page. Fixed + inert. */
+  .grain {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.032;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Entrance is driven by an attribute rather than a class, so pages
+     stay server components — the observer in the layout is the only
+     client code involved. */
+  [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 1.75rem, 0);
+    filter: blur(6px);
+    transition:
+      opacity 0.9s var(--ease-fluid),
+      transform 0.9s var(--ease-fluid),
+      filter 0.9s var(--ease-fluid);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: transform, opacity;
+  }
+
+  [data-reveal][data-shown="true"] {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+    will-change: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+}
