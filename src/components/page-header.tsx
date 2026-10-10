@@ -32,7 +32,7 @@ export default function PageHeader({
       {/* Glyph sits behind the grid, offset right, so the title can
           overlap it without anything looking broken. */}
       <div
-        className="pointer-events-none absolute top-1/2 -right-24 hidden h-[120%] w-[62%] -translate-y-1/2 opacity-70 lg:block"
+        className="pointer-events-none absolute top-1/2 -right-28 hidden h-[105%] w-[52%] -translate-y-1/2 opacity-60 lg:block"
         style={{ animation: "noema-rise 1200ms var(--ease-fluid) 420ms both" }}
         aria-hidden
       >

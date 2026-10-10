@@ -70,7 +70,7 @@ export default function Home() {
         {/* A real brain, behind the type, so the right half of the
             composition has an object rather than a void. */}
         <div
-          className="pointer-events-none absolute top-1/2 -right-16 hidden h-[130%] w-[58%] -translate-y-1/2 opacity-[0.55] lg:block"
+          className="pointer-events-none absolute top-1/2 -right-20 hidden h-[120%] w-[50%] -translate-y-1/2 opacity-50 lg:block"
           aria-hidden
         >
           <BrainGlyph className="size-full" glow="gfp" />
