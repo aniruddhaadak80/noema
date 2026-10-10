@@ -58,23 +58,22 @@ export default function QuestionsPage() {
           </>
         }
         lede="Everything so far has been an explanation of mechanism. None of it explains why there is something it is like to run the mechanism — and that gap is not a temporary one. It might be an artefact of asking the wrong question. It might be the whole question. The positions below are the live options, each with the claim and the bill."
-        aside={
-          <>
-            <dl className="grid grid-cols-2 gap-x-8 gap-y-5">
-              {[
-                ["24", "positions"],
-                ["5", "thought experiments"],
-                ["2,600", "years of argument"],
-                ["0", "consensus"],
-              ].map(([n, l]) => (
-                <div key={l}>
-                  <dt className="font-display text-[2rem] leading-none text-bone">{n}</dt>
-                  <dd className="mt-1.5 text-[11px] leading-tight text-dim">{l}</dd>
-                </div>
-              ))}
-            </dl>
-          </>
-        }
+        stats={[
+          ["24", "positions"],
+          ["5", "thought experiments"],
+          ["2,600", "years of argument"],
+          ["0", "consensus"],
+          ["5", "families of view"],
+          ["1", "hard problem"],
+        ]}
+        note="The positions are grouped by what they are about, not by who held them or when. Order within each family runs from the most committal to the least."
+        chips={[
+          "Mind and body",
+          "Consciousness",
+          "Free will",
+          "Personal identity",
+          "Where thinking happens",
+        ]}
       />
 
       {FAMILIES.map((fam) => {

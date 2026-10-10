@@ -122,6 +122,24 @@
     }
   }
 
+  /* The fact rail is the only continuous motion on the site besides
+     the hero field. It is transform-only and it stops entirely for
+     anyone who asked for less movement. */
+  @keyframes noema-rail {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rail-track {
+      animation: none !important;
+    }
+  }
+
   /* Typing the wordmark's Greek second letter, once, on load. */
   @keyframes noema-draw {
     from {

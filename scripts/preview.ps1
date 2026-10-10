@@ -1,4 +1,4 @@
-param([int]$Port = 3147, [switch]$SkipBuild)
+param([int]$Port = 3147, [switch]$SkipBuild, [switch]$Shoot)
 $env:BASE = "http://127.0.0.1:$Port"
 
 if (-not $SkipBuild) {
@@ -45,4 +45,10 @@ if (-not $ok) {
 
 Write-Output "server up on $Port, identity verified"
 node scripts/render-brain.cjs
+
+if ($Shoot) {
+  Write-Output "taking screenshots..."
+  & .\scripts\screenshots.ps1 -Base "http://127.0.0.1:$Port" | Select-String -Pattern "capturing|ok \(|FAILED"
+}
+
 try { $p.Kill() } catch {}

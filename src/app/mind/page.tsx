@@ -24,21 +24,21 @@ export default function MindPage() {
           </>
         }
         lede="Everything on this page is a description of a mechanism that was not designed, does not have a specification, and was assembled by selection rather than engineering. That is worth holding onto while reading: the heuristics here are not bugs in a design. They are what a system optimised for a different environment looks like from the inside."
-        aside={
-          <dl className="grid grid-cols-2 gap-x-8 gap-y-5">
-            {[
-              ["5", "memory systems"],
-              ["12", "biases"],
-              ["14", "experiments"],
-              ["4", "forgetting effects"],
-            ].map(([n, l]) => (
-              <div key={l}>
-                <dt className="font-display text-[2rem] leading-none text-bone">{n}</dt>
-                <dd className="mt-1.5 text-[11px] leading-tight text-dim">{l}</dd>
-              </div>
-            ))}
-          </dl>
-        }
+        stats={[
+          ["5", "memory systems"],
+          ["12", "biases"],
+          ["14", "experiments"],
+          ["4", "forgetting effects"],
+          ["5", "working definitions"],
+          ["2", "studies on life support"],
+        ]}
+        note="The two most famous experiments in the field are both considerably less solid than their reputations. Both are on this page with what happened to them since."
+        chips={[
+          "Anterograde amnesia",
+          "Reconsolidation",
+          "Gain modulation",
+          "Prediction error",
+        ]}
       />
 
       {/* ── Memory ────────────────────────────────────────────── */}

@@ -30,22 +30,22 @@ export default function CircuitsPage() {
           </>
         }
         lede="Two molecules carry almost every message in the brain: one that excites, one that inhibits. Everything else on this page exists to adjust the gain, set the timing, and decide what gets through. Below that sits a second layer — the handful of nuclei that project everywhere and modulate everything, and the seven networks they organise the cortex into."
-        aside={
-          <dl className="grid grid-cols-2 gap-x-8 gap-y-5">
-            {[
-              ["12", "transmitters"],
-              ["6", "diffuse nuclei"],
-              ["7", "networks"],
-              ["4", "sleep stages"],
-              ["5", "consciousness theories"],
-            ].map(([n, l]) => (
-              <div key={l}>
-                <dt className="font-display text-[2rem] leading-none text-bone">{n}</dt>
-                <dd className="mt-1.5 text-[11px] leading-tight text-dim">{l}</dd>
-              </div>
-            ))}
-          </dl>
-        }
+        stats={[
+          ["12", "transmitters"],
+          ["6", "diffuse nuclei"],
+          ["7", "networks"],
+          ["4", "sleep stages"],
+          ["5", "consciousness theories"],
+          ["~2 : 1", "glutamate to GABA"],
+        ]}
+        note="Every one of the six nuclei has a disease or a drug attached to it. Two have both, and one of those has no treatment that works reliably."
+        chips={[
+          "Amino acids",
+          "Monoamines",
+          "Neuropeptides",
+          "Endocannabinoids",
+          "Hormones",
+        ]}
       />
 
       {/* ── Molecules ─────────────────────────────────────────── */}

@@ -24,21 +24,23 @@ export default function MirrorPage() {
           </>
         }
         lede="The comparison is usually made with a neuron equated to a parameter and a synapse to a weight, and it is close to useless in that form. The twelve axes below use the measurements instead — joules, spikes, replay, forgetting — because the interesting disagreements are not about analogy. They are about which properties each system happens to have, and it turns out those sets barely overlap."
-        aside={
-          <dl className="grid grid-cols-2 gap-x-8 gap-y-5">
-            {[
-              ["12", "axes"],
-              ["2026", "models current"],
-              ["2", "of them settled"],
-              ["1", "not settled"],
-            ].map(([n, l]) => (
-              <div key={l}>
-                <dt className="font-display text-[2rem] leading-none text-bone">{n}</dt>
-                <dd className="mt-1.5 text-[11px] leading-tight text-dim">{l}</dd>
-              </div>
-            ))}
-          </dl>
-        }
+        stats={[
+          ["12", "axes"],
+          ["2026", "models current"],
+          ["2", "already settled"],
+          ["1", "not settled at all"],
+          ["20 W", "the whole brain"],
+          ["0.31 Wh", "one frontier query"],
+        ]}
+        note="Where the current evidence cuts is stated per axis, including where the honest answer is that nobody knows and where the popular comparison is simply invalid."
+        chips={[
+          "Elements",
+          "Signal",
+          "Power",
+          "Learning",
+          "Plasticity",
+          "Grounding",
+        ]}
       />
 
       <section className="px-5 pb-24 md:px-10 md:pb-32">

@@ -27,36 +27,15 @@ export default function AtlasPage() {
           </>
         }
         lede="A lateral view of the left hemisphere. The coloured areas are not tiles — they overlap, the way stains overlap on a real section, and each is held inside the cortical silhouette so the outline stays honest. Select any region to read what it does, what happens when it stops, and the detail that rarely makes it into a textbook."
-        aside={
-          <dl className="grid grid-cols-2 gap-x-8 gap-y-5">
-            {[
-              ["31", "regions mapped"],
-              ["10", "divisions"],
-              [String(cortex), "of them cortical"],
-              ["2", "drawn outside the sheet"],
-            ].map(([n, l]) => (
-              <div key={l}>
-                <dt className="font-display text-[2rem] leading-none text-bone">{n}</dt>
-                <dd className="mt-1.5 text-[11px] leading-tight text-dim">{l}</dd>
-              </div>
-            ))}
-            <p className="col-span-2 mt-2 border-l border-hair pl-4 text-[13px] leading-relaxed text-dim">
-              Boundaries shown: the central sulcus, the lateral sulcus,
-              and the parieto-occipital sulcus. Everything else is drawn
-              from the region it belongs to, not from the skull.
-            </p>
-          </dl>
-        }
-      >
-        {LOBES.map((l) => (
-          <span
-            key={l.id}
-            className={`rounded-full px-2.5 py-1 text-[11px] ring-1 ${STAIN[l.stain].ring} ${STAIN[l.stain].text}`}
-          >
-            {l.name}
-          </span>
-        ))}
-      </PageHeader>
+        stats={[
+          ["31", "regions mapped"],
+          ["10", "divisions"],
+          [String(cortex), "of them cortical"],
+          ["2", "drawn outside the sheet"],
+        ]}
+        note="Boundaries shown: the central sulcus, the lateral sulcus, and the parieto-occipital sulcus. Everything else is drawn from the region it belongs to, not from the skull."
+        chips={LOBES.map((l) => l.name)}
+      />
 
       <section className="px-5 pb-24 md:px-10 md:pb-32">
         <div className="mx-auto max-w-6xl">
