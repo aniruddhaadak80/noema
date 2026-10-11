@@ -67,6 +67,16 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Noema — an atlas of the mind",
+    url: SITE,
+    description:
+      "An interactive atlas of the human brain and mind: neuroanatomy, neurochemistry, psychology, philosophy of mind, and brain–AI comparison.",
+    inLanguage: "en",
+  };
+
   return (
     <html
       lang="en"
@@ -74,6 +84,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${bodoni.variable} ${familjen.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <div className="hemisphere-wash" aria-hidden />
         <div className="grain" aria-hidden />
         <a

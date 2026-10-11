@@ -1,4 +1,4 @@
-import type { SearchEntry, Stain } from "@/lib/types";
+import type { SearchEntry } from "@/lib/types";
 import { REGIONS, LOBES } from "@/data/regions";
 import { MOLECULES, NETWORKS, NUCLEI, SLEEP_STAGES, CONSCIOUSNESS_THEORIES } from "@/data/circuits";
 import { MEMORY, BIASES, EXPERIMENTS, FORGETTING, CONCEPTS } from "@/data/mind";
@@ -68,14 +68,16 @@ export const NUMBERS = [
 ];
 
 export const SEARCH_INDEX: SearchEntry[] = [
-  ...REGIONS.map((r) => entry({
-    id: `region-${r.id}`,
-    title: r.name,
-    kind: "Region",
-    href: "/atlas",
-    blurb: r.aka?.join(", ") ?? LOBES.find((l) => l.id === r.lobe)?.name ?? "",
-    stain: r.stain,
-  })),
+  ...REGIONS.map((r) =>
+    entry({
+      id: `region-${r.id}`,
+      title: r.name,
+      kind: "Region",
+      href: `/atlas#${r.id}`,
+      blurb: r.aka?.join(", ") ?? LOBES.find((l) => l.id === r.lobe)?.name ?? "",
+      stain: r.stain,
+    }),
+  ),
   ...LOBES.map((l) => entry({
     id: `lobe-${l.id}`,
     title: l.name,
@@ -188,6 +190,22 @@ export const SEARCH_INDEX: SearchEntry[] = [
     blurb: c.verdict.slice(0, 105),
     stain: c.stain,
   })),
+  entry({
+    id: "tool-recall",
+    title: "Recall — test yourself",
+    kind: "Tool",
+    href: "/recall",
+    blurb: "Eight questions per round, generated from the atlas itself",
+    stain: "melanin",
+  }),
+  entry({
+    id: "tool-search",
+    title: "Search everything",
+    kind: "Tool",
+    href: "/atlas",
+    blurb: "⌘K from anywhere — regions, molecules, biases, positions",
+    stain: "gfp",
+  }),
 ];
 
 export const SECTIONS = [

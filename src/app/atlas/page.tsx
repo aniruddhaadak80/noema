@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default function AtlasPage() {
-  const cortex = REGIONS.filter((r) => !["cerebellum", "brainstem"].includes(r.lobe)).length;
+  const onSheet = REGIONS.filter((r) => !["cerebellum", "brainstem"].includes(r.id)).length;
 
   return (
     <>
@@ -30,8 +30,8 @@ export default function AtlasPage() {
         stats={[
           ["31", "regions mapped"],
           ["10", "divisions"],
-          [String(cortex), "of them cortical"],
-          ["2", "drawn outside the sheet"],
+          [String(onSheet), "mapped on the sheet"],
+          ["2", "drawn outside it"],
         ]}
         note="Boundaries shown: the central sulcus, the lateral sulcus, and the parieto-occipital sulcus. Everything else is drawn from the region it belongs to, not from the skull."
         chips={LOBES.map((l) => l.name)}
@@ -62,7 +62,7 @@ export default function AtlasPage() {
 
           <div className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {MOLECULES.slice(0, 8).map((m, i) => (
-              <Link2 key={m.id} href="/circuits" s={m.stain} delay={i * 55}>
+              <Link2 key={m.id} href="/circuits" delay={i * 55}>
                 <p className={`font-display text-[1.4rem] leading-tight ${STAIN[m.stain].text}`}>
                   {m.name}
                 </p>
@@ -84,12 +84,10 @@ export default function AtlasPage() {
 function Link2({
   href,
   children,
-  s,
   delay,
 }: {
   href: string;
   children: React.ReactNode;
-  s: keyof typeof STAIN;
   delay: number;
 }) {
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   BRAINSTEM,
   CEREBELLUM,
@@ -54,6 +54,43 @@ export default function BrainAtlas() {
   const [selected, setSelected] = useState<string>("hippocampus");
   const [hovered, setHovered] = useState<string | null>(null);
   const [lobe, setLobe] = useState<Lobe | "all">("all");
+  const [copied, setCopied] = useState(false);
+
+  /* Deep links: /atlas#hippocampus selects the region on load and
+     follows the hash afterwards, so entries can link straight here
+     and readers can share a region. replaceState avoids the jump. */
+  useEffect(() => {
+    const fromHash = () => {
+      const id = window.location.hash.slice(1);
+      if (id && REGIONS.some((r) => r.id === id)) setSelected(id);
+    };
+    fromHash();
+    window.addEventListener("hashchange", fromHash);
+    return () => window.removeEventListener("hashchange", fromHash);
+  }, []);
+
+  const select = (id: string) => {
+    setSelected(id);
+    window.history.replaceState(null, "", `#${id}`);
+  };
+
+  const order = useMemo(() => REGIONS.map((r) => r.id), []);
+  const step = (dir: 1 | -1) => {
+    const i = order.indexOf(selected);
+    select(order[(i + dir + order.length) % order.length]);
+  };
+
+  const copyLink = async () => {
+    try {
+      await window.navigator.clipboard.writeText(
+        `${window.location.origin}${window.location.pathname}#${selected}`,
+      );
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1600);
+    } catch {
+      /* clipboard unavailable — the URL bar already has the hash */
+    }
+  };
 
   const active = hovered ?? selected;
   const current = useMemo(
@@ -82,11 +119,11 @@ export default function BrainAtlas() {
     onPointerLeave: () => setHovered(null),
     onFocus: () => setHovered(id),
     onBlur: () => setHovered(null),
-    onClick: () => setSelected(id),
+    onClick: () => select(id),
     onKeyDown: (e: React.KeyboardEvent) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        setSelected(id);
+        select(id);
       }
     },
   });
@@ -284,6 +321,40 @@ export default function BrainAtlas() {
               <p className="mt-2 text-sm text-dim">{current.aka.join(" · ")}</p>
             ) : null}
 
+            <div className="mt-5 flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => step(-1)}
+                aria-label="Previous region"
+                className="grid size-8 place-items-center rounded-full text-mute ring-1 ring-white/10 transition-all duration-500 ease-fluid hover:text-bone hover:ring-white/25 active:scale-[0.96]"
+              >
+                <svg viewBox="0 0 16 16" className="size-3.5" fill="none" aria-hidden>
+                  <path d="M10 3 5 8l5 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                onClick={() => step(1)}
+                aria-label="Next region"
+                className="grid size-8 place-items-center rounded-full text-mute ring-1 ring-white/10 transition-all duration-500 ease-fluid hover:text-bone hover:ring-white/25 active:scale-[0.96]"
+              >
+                <svg viewBox="0 0 16 16" className="size-3.5" fill="none" aria-hidden>
+                  <path d="m6 3 5 5-5 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              <span className="mx-1 h-4 w-px bg-hair" aria-hidden />
+              <button
+                type="button"
+                onClick={copyLink}
+                className="rounded-full px-3 py-1.5 text-[12px] text-mute ring-1 ring-white/10 transition-colors duration-500 hover:text-bone"
+              >
+                {copied ? "Link copied" : "Copy link to region"}
+              </button>
+              <span className="ml-auto text-[11px] tabular-nums text-dim">
+                {order.indexOf(current.id) + 1} / {order.length}
+              </span>
+            </div>
+
             <ul className="mt-7 space-y-2.5">
               {current.functions.map((f) => (
                 <li key={f} className="flex gap-3 text-sm leading-relaxed text-mute">
@@ -321,7 +392,7 @@ export default function BrainAtlas() {
                 <button
                   type="button"
                   onClick={() => {
-                    setSelected(r.id);
+                    select(r.id);
                     setHovered(r.id);
                   }}
                   onPointerLeave={() => setHovered(null)}

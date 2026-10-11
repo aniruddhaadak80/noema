@@ -21,7 +21,7 @@ An interactive atlas of the human brain and mind. 31 cortical and subcortical re
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-v4-38BDF8?style=flat-square&logo=tailwindcss&logoColor=black)
 ![Vercel](https://img.shields.io/badge/deploy-Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
 ![license](https://img.shields.io/badge/license-MIT-45E0C4?style=flat-square)
-![routes](https://img.shields.io/badge/routes-11%20static-E2458B?style=flat-square)
+![routes](https://img.shields.io/badge/routes-12-E2458B?style=flat-square)
 
 </div>
 
@@ -46,8 +46,9 @@ Noema is built on that premise. Where a famous number is contested, it is shown 
 | **03** | **Mind** | 5 memory systems, 12 biases, 14 experiments, 4 effects, 5 concepts |
 | **04** | **Questions** | 24 positions, 5 thought experiments, 5 families of view |
 | **05** | **Mirror** | 12 comparison axes, power and trajectory |
+| | **Recall** | 130+ generated questions, 5 modes, best scores on-device |
 
-**Totals** — 31 regions · 12 transmitters · 6 nuclei · 7 networks · 4 sleep stages · 5 theories of consciousness · 5 memory systems · 12 biases · 14 experiments · 4 forgetting effects · 5 concepts · 24 positions · 5 thought experiments · 12 comparison axes.
+**Totals** — 31 regions · 12 transmitters · 6 nuclei · 7 networks · 4 sleep stages · 5 theories of consciousness · 5 memory systems · 12 biases · 14 experiments · 4 forgetting effects · 5 concepts · 24 positions · 5 thought experiments · 12 comparison axes · 130+ recall questions.
 
 ---
 
@@ -117,6 +118,16 @@ The brain remains ahead on the only measure that matters for usefulness: energy 
 
 ---
 
+## Recall
+
+<p align="center">
+  <img src="shots/recall.png" alt="Recall — test yourself on the atlas" width="100%">
+</p>
+
+Retrieval practice beats re-exposure — the testing effect, from the mind page, applied by the atlas to itself. Every question is generated from the entries, distractors come from the same category so wrong answers stay plausible, and each explanation links back to the entry. Eight questions per round, five modes, keyboard 1–4 to answer, best scores kept per mode in the browser only.
+
+---
+
 ## Design
 
 The brief ruled out a lot: no Inter, Roboto, Arial, Open Sans or Helvetica; no thick-stroked Lucide, FontAwesome or Material icons; no generic 1px grey borders; no harsh drop shadows; no edge-to-edge sticky navbars; no `linear` or `ease-in-out`; no instant state changes.
@@ -146,6 +157,9 @@ Collapses to a single column below `768px` with `px-4` — every asymmetric over
 <p align="center">
   <img src="shots/questions.png" width="49%">&nbsp;<img src="shots/mirror.png" width="49%">
 </p>
+<p align="center">
+  <img src="shots/recall.png" width="100%">
+</p>
 
 <details>
 <summary>Mobile view (atlas, 420px)</summary>
@@ -170,9 +184,9 @@ npm run dev        # http://localhost:3000
 | Command | What it does |
 |---|---|
 | `npm run dev` | Development server with Turbopack HMR |
-| `npm run build` | Production build (all 11 routes statically prerendered) |
+| `npm run build` | Production build (all routes statically prerendered) |
 | `npm run start` | Serve the production build |
-| `npm run lint` | ESLint, flat config |
+| `npm run lint` | ESLint, flat config, zero warnings |
 
 ### Scripts in `scripts/`
 

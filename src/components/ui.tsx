@@ -3,30 +3,6 @@ import type { ReactNode } from "react";
 import type { Stain } from "@/lib/types";
 import { STAIN } from "@/lib/stain";
 
-/* ── Double-bezel ──────────────────────────────────────────────
-   A card never sits flat on the background. It sits in a tray:
-   an outer shell with its own fill and hairline, and an inner
-   core with a concentric, smaller radius and an inset highlight
-   along the top edge — the way a glass plate looks when it has
-   been set into aluminium. */
-export function Bezel({
-  children,
-  className = "",
-  shell = "bg-white/[0.022] ring-1 ring-white/[0.06]",
-  core = "bg-panel shadow-[inset_0_1px_0_rgba(242,239,230,0.055)]",
-}: {
-  children: ReactNode;
-  className?: string;
-  shell?: string;
-  core?: string;
-}) {
-  return (
-    <div className={`rounded-[1.75rem] p-1.5 ring-1 ${shell.replace(/^bg-\S+\s*/, "")} ${shell} ${className}`}>
-      <div className={`h-full rounded-[calc(1.75rem-0.375rem)] ${core}`}>{children}</div>
-    </div>
-  );
-}
-
 /* An eyebrow that reports something rather than decorating. */
 export function Tag({
   children,

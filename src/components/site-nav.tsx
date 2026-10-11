@@ -10,6 +10,11 @@ export default function SiteNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
+  /* Close the menu on navigation (including back/forward, which no
+     click handler can see). Idempotent and conditional, so it never
+     loops — the lint heuristic below cannot tell that apart from a
+     cascading render, hence the scoped disable. */
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setOpen(false), [pathname]);
 
   useEffect(() => {

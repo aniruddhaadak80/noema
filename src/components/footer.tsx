@@ -7,7 +7,7 @@ const SOURCES = [
   { label: "Goriely, 'Eighty-six billion and counting' (2024)", href: "https://academic.oup.com/brain/article/148/3/689/7909879" },
   { label: "Yeo et al., 17-network parcellation", href: "https://www.pnas.org/doi/10.1073/pnas.1834582110" },
   { label: "Raichle et al., the default mode network", href: "https://www.pnas.org/doi/10.1073/pnas.98.2.676" },
-  { label: "Melloni, Lauer & Ga Science: energy of AI inference", href: "https://www.cell.com/joule/fulltext/S2542-4351(26)00114-5" },
+  { label: "Oviedo et al., energy of AI inference (2026)", href: "https://www.cell.com/joule/fulltext/S2542-4351(26)00114-5" },
   { label: "Epoch AI, power demands of frontier training", href: "https://epoch.ai/publications/power-demands-of-frontier-ai-training" },
 ];
 

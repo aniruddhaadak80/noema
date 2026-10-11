@@ -67,7 +67,7 @@ export default function MirrorPage() {
               for usefulness: energy per unit of delivered cognition. Zheng
               and Meister put conscious human throughput near ten bits per
               second. A frontier agentic session burns one to twenty
-              million tokens for a day's work — thirty to seven hundred
+              million tokens for a day&rsquo;s work — thirty to seven hundred
               watts of effective thinking against twenty.
             </p>
             <p className="prose-measure-wide mt-5 text-[1.0625rem] leading-relaxed text-mute">

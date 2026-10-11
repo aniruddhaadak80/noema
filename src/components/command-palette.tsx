@@ -63,6 +63,12 @@ export default function CommandPalette() {
     setCursor(0);
   }, []);
 
+  const surprise = useCallback(() => {
+    const pick = SEARCH_INDEX[Math.floor(Math.random() * SEARCH_INDEX.length)];
+    close();
+    router.push(pick.href);
+  }, [close, router]);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
@@ -82,11 +88,23 @@ export default function CommandPalette() {
     }
   }, [open]);
 
-  useEffect(() => setCursor(0), [query]);
+  /** Cursor moves only ever happen in event handlers, so the scroll
+   *  follows here rather than in a second effect. */
+  const moveCursor = useCallback(
+    (next: number) => {
+      const clamped = Math.max(0, Math.min(next, results.length - 1));
+      setCursor(clamped);
+      window.requestAnimationFrame(() => {
+        listRef.current?.children[clamped]?.scrollIntoView({ block: "nearest" });
+      });
+    },
+    [results.length],
+  );
 
-  useEffect(() => {
-    listRef.current?.children[cursor]?.scrollIntoView({ block: "nearest" });
-  }, [cursor]);
+  const onQuery = useCallback((value: string) => {
+    setQuery(value);
+    setCursor(0);
+  }, []);
 
   const go = useCallback(
     (href: string) => {
@@ -139,15 +157,15 @@ export default function CommandPalette() {
                 <input
                   ref={inputRef}
                   value={query}
-                  onChange={(e) => setQuery(e.target.value)}
+                  onChange={(e) => onQuery(e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === "ArrowDown") {
                       e.preventDefault();
-                      setCursor((c) => Math.min(c + 1, results.length - 1));
+                      moveCursor(cursor + 1);
                     }
                     if (e.key === "ArrowUp") {
                       e.preventDefault();
-                      setCursor((c) => Math.max(c - 1, 0));
+                      moveCursor(cursor - 1);
                     }
                     if (e.key === "Enter" && results[cursor]) {
                       e.preventDefault();
@@ -167,6 +185,29 @@ export default function CommandPalette() {
               </div>
 
               <ul ref={listRef} className="max-h-[46vh] overflow-y-auto p-1.5">
+                <li>
+                  <button
+                    type="button"
+                    onClick={surprise}
+                    className="flex w-full items-center gap-3 rounded-xl px-4 py-2.5 text-left transition-colors duration-300 hover:bg-white/[0.05]"
+                  >
+                    <span className="grid size-5 shrink-0 place-items-center rounded-full bg-melanin/10 text-melanin ring-1 ring-melanin/40" aria-hidden>
+                      <svg viewBox="0 0 16 16" className="size-3" fill="none">
+                        <path
+                          d="M13.5 2.5h-11m11 0v11m0-11L8 8M2.5 13.5h11m-11 0v-11m0 11L8 8"
+                          stroke="currentColor"
+                          strokeWidth="1.2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                    <span className="text-sm text-bone">Surprise me</span>
+                    <span className="ml-auto hidden text-xs text-dim sm:block">
+                      one of {SEARCH_INDEX.length} entries, at random
+                    </span>
+                  </button>
+                </li>
                 {results.length === 0 ? (
                   <li className="px-4 py-8 text-center text-sm text-dim">
                     Nothing matches “{query}”.
@@ -177,7 +218,7 @@ export default function CommandPalette() {
                       <Link
                         href={entry.href}
                         onClick={close}
-                        onMouseEnter={() => setCursor(i)}
+                        onMouseEnter={() => moveCursor(i)}
                         className={`flex items-baseline gap-3 rounded-xl px-4 py-2.5 transition-colors duration-300 ${
                           i === cursor ? "bg-white/[0.05]" : ""
                         }`}

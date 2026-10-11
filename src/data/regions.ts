@@ -12,9 +12,6 @@ import type { Lobe, LobeMeta, Region } from "@/lib/types";
    edge — because on a lateral surface you cannot see them, and
    the drawing should not pretend otherwise. */
 
-const S1 = "250,452";
-const S4 = "800,476";
-
 export const SYLVIAN =
   "M 250,452 C 292,486 350,502 410,506 C 490,516 588,508 676,488 " +
   "C 722,478 766,470 800,476";
@@ -183,6 +180,28 @@ export const REGIONS: Region[] = [
       "It sits directly above the hypothalamus and is one of the few places where a thought can become a heartbeat within a second.",
   },
   {
+    id: "frontopolar",
+    name: "Frontopolar cortex",
+    aka: ["BA 10", "rostral prefrontal cortex", "frontal pole"],
+    lobe: "frontal",
+    hemisphere: "bilateral",
+    stain: "gfp",
+    path:
+      "M 104,252 C 98,304 108,362 140,402 C 172,424 214,422 244,410 " +
+      "C 254,360 252,300 240,250 C 204,230 140,232 104,252 Z",
+    cx: 176,
+    cy: 326,
+    functions: [
+      "Holds a pending goal while you work on another — the branching of attention",
+      "Prospective memory: remembering to act on an intention at the right future moment",
+      "Integrates the outcomes of two separate tasks to decide what to do next",
+    ],
+    lesions:
+      "Multitasking collapses while single tasks survive: the patient can do A and can do B, but cannot hold the intention to do B while doing A.",
+    oddity:
+      "Brodmann area 10 is disproportionately enlarged in humans relative to apes — one of the largest such differences in the entire cortex — and it is also among the least understood.",
+  },
+  {
     id: "premotor",
     name: "Premotor & supplementary motor",
     aka: ["SMA", "BA 6", "pre-SMA"],
@@ -308,6 +327,28 @@ export const REGIONS: Region[] = [
       "Split-brain patients — the corpus callosum surgically severed to control epilepsy — can name an object shown only to the right visual field, and cannot name one shown only to the left, while drawing it with the left hand.",
     oddity:
       "Sperry won the Nobel for this, and it remains the cleanest evidence in biology that two processes can share a brain and not share a mind.",
+  },
+  {
+    id: "postcingulate",
+    name: "Posterior cingulate cortex",
+    aka: ["PCC", "BA 23/31", "precuneus interface"],
+    lobe: "cingulate",
+    hemisphere: "bilateral",
+    stain: "vessel",
+    path:
+      "M 596,208 C 656,200 716,208 762,232 C 788,250 786,276 760,288 " +
+      "C 700,300 632,294 592,272 C 570,254 574,216 596,208 Z",
+    cx: 678,
+    cy: 250,
+    functions: [
+      "A core hub of the default mode network, with the precuneus the most connected node in the cortex",
+      "Self-referential processing and autobiographical retrieval — the 'me' in a memory",
+      "Toggles with the dorsal attention network: when one rises, the other falls",
+    ],
+    lesions:
+      "Among the earliest sites of amyloid deposition and metabolic decline in Alzheimer's, years before symptoms — which is why the DMN was first noticed failing there.",
+    oddity:
+      "It consumes more energy at rest than almost any other cortical region, which is part of why a brain doing 'nothing' still draws twenty watts.",
   },
   {
     id: "splenium",
@@ -562,6 +603,28 @@ export const REGIONS: Region[] = [
       "The earliest and most consistent pathology in Alzheimer's disease: entorhinal and hippocampal tau deposition years before any memory complaint appears.",
     oddity:
       "Grid cells won the Nobel Prize in 2014 for letting a rat keep track of where it was — discovered by fitting an equation to spikes recorded by a tetrode during a walk across a field.",
+  },
+  {
+    id: "parahippocampal",
+    name: "Parahippocampal gyrus",
+    aka: ["PPA", "parahippocampal place area", "BA 36/37 medial"],
+    lobe: "temporal",
+    hemisphere: "bilateral",
+    stain: "melanin",
+    path:
+      "M 648,596 C 694,592 738,606 764,630 C 784,648 784,674 766,688 " +
+      "C 724,702 674,696 646,676 C 626,658 630,602 648,596 Z",
+    cx: 706,
+    cy: 648,
+    functions: [
+      "Scene and place recognition — rooms, landscapes, spatial layouts, not faces or objects",
+      "The other half of the classic double dissociation: FFA damage spares places, PPA damage spares faces",
+      "Feeds spatial context into the entorhinal cortex and onward to the hippocampus",
+    ],
+    lesions:
+      "Topographical disorientation: the patient recognises every object and face in a room and cannot tell which room it is, including their own.",
+    oddity:
+      "Epstein and Kanwisher found it in 1998 by showing subjects empty rooms. It responds more to a photograph of a kitchen with the appliances removed than to any face ever recorded.",
   },
   {
     id: "thalamus",

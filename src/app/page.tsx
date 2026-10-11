@@ -5,9 +5,6 @@ import BrainGlyph from "@/components/brain-glyph";
 import FactRail from "@/components/fact-rail";
 import { NUMBERS, SECTIONS } from "@/data/index";
 import { LOBES } from "@/data/regions";
-import { MOLECULES } from "@/data/circuits";
-import { BIASES } from "@/data/mind";
-import { POSITIONS } from "@/data/questions";
 import { Action, Plate, Tag } from "@/components/ui";
 import { STAIN } from "@/lib/stain";
 
@@ -346,6 +343,14 @@ export default function Home() {
                 stain: "gfp" as const,
                 body:
                   "Freedom is not the ability to have done otherwise in a counterfactual sense that includes doing otherwise while everything stays the same. It is acting from your own reasons without coercion.",
+              },
+              {
+                href: "/mind",
+                kind: "Bias",
+                title: "Inattentional blindness",
+                stain: "melanin" as const,
+                body:
+                  "Attention is a small, selective, task-defined aperture, and you have no introspective access to what it excluded. Around half of observers miss the intruder entirely — and report having watched it all the same.",
               },
               {
                 href: "/mirror",
