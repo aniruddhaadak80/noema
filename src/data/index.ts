@@ -192,11 +192,19 @@ export const SEARCH_INDEX: SearchEntry[] = [
   })),
   entry({
     id: "tool-recall",
-    title: "Recall — test yourself",
+    title: "Recall – test yourself",
     kind: "Tool",
     href: "/recall",
     blurb: "Eight questions per round, generated from the atlas itself",
     stain: "melanin",
+  }),
+  entry({
+    id: "tool-timeline",
+    title: "Timeline – how we got here",
+    kind: "Tool",
+    href: "/timeline",
+    blurb: "Sixteen landmarks from Galen to optogenetics",
+    stain: "golgi",
   }),
   entry({
     id: "tool-search",
@@ -253,5 +261,14 @@ export const SECTIONS = [
     body:
       "Twelve axes of comparison against a 2026 frontier model, with the evidence rather than the analogy. Including the part where hardware has already caught up and the part where it has not.",
     stain: "gfp" as const,
+  },
+  {
+    href: "/timeline",
+    index: "06",
+    title: "Timeline",
+    subtitle: "How the picture came together",
+    body:
+      "Sixteen landmarks from Galen to the present, showing the slow move from speculation to experiment.",
+    stain: "golgi" as const,
   },
 ];

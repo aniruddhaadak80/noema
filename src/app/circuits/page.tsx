@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/page-header";
+import ActionPotential from "@/components/action-potential";
+import Hypnogram from "@/components/hypnogram";
+import EegBands from "@/components/eeg-bands";
 import { Pin, Plate, Tag } from "@/components/ui";
 import {
   CONSCIOUSNESS_THEORIES,
@@ -107,6 +110,23 @@ export default function CircuitsPage() {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Action potential lab ────────────────────────────── */}
+      <section className="px-5 pb-24 md:px-10 md:pb-32">
+        <div className="mx-auto max-w-6xl">
+          <div data-reveal>
+            <Plate
+              over="Laboratory"
+              title="Two milliseconds, walked slowly"
+              s="golgi"
+              lede="Everything above this section describes what transmitters do. This is the event itself: a spike travelling a myelinated axon, and the five voltage states the membrane passes through to make it happen. Step through the phases and watch the trace."
+            />
+          </div>
+          <div data-reveal className="mt-14">
+            <ActionPotential />
           </div>
         </div>
       </section>
@@ -257,6 +277,14 @@ export default function CircuitsPage() {
             occupying adenosine receptors without activating them, which
             is why the pressure is still there when it wears off.
           </p>
+
+          <div data-reveal className="mt-10">
+            <Hypnogram />
+          </div>
+
+          <div data-reveal className="mt-10">
+            <EegBands />
+          </div>
         </div>
       </section>
 

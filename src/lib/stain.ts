@@ -47,5 +47,6 @@ export const NAV = [
   { href: "/mind", label: "Mind" },
   { href: "/questions", label: "Questions" },
   { href: "/mirror", label: "Mirror" },
+  { href: "/timeline", label: "Timeline" },
   { href: "/recall", label: "Recall" },
 ] as const;

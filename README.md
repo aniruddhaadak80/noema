@@ -21,7 +21,7 @@ An interactive atlas of the human brain and mind. 31 cortical and subcortical re
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-v4-38BDF8?style=flat-square&logo=tailwindcss&logoColor=black)
 ![Vercel](https://img.shields.io/badge/deploy-Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
 ![license](https://img.shields.io/badge/license-MIT-45E0C4?style=flat-square)
-![routes](https://img.shields.io/badge/routes-12-E2458B?style=flat-square)
+![routes](https://img.shields.io/badge/routes-16-E2458B?style=flat-square)
 
 </div>
 

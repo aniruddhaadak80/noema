@@ -272,8 +272,97 @@ function buildBank(): QuizItem[] {
 
 let bank: QuizItem[] | null = null;
 export function questionBank(): QuizItem[] {
-  if (!bank) bank = buildBank();
+  if (!bank) {
+    bank = [...buildBank(), ...labQuestions()];
+  }
   return bank;
+}
+
+/** Hand-written items for the interactive laboratories, which have
+ *  no data-file entries to generate from. Same shape, same rules. */
+function labQuestions(): QuizItem[] {
+  return [
+    {
+      id: "lab-ap-peak",
+      mode: "circuits",
+      ask: "In the action potential lab, how far does the voltage swing?",
+      prompt: "“From a resting −70 mV to a peak of …”",
+      options: ["+40 mV", "0 mV", "+70 mV", "−90 mV"],
+      answer: 0,
+      explain: "Depolarisation overshoots zero to about +40 mV; −90 mV is the undershoot on the way back down.",
+      href: "/circuits",
+    },
+    {
+      id: "lab-ap-ions",
+      mode: "circuits",
+      ask: "Which ion movement drives the upstroke of the spike?",
+      prompt: "“The explosive rise from −55 mV to +40 mV”",
+      options: ["Sodium flooding in", "Potassium flooding in", "Calcium flooding out", "Chloride flooding in"],
+      answer: 0,
+      explain: "Voltage-gated sodium channels open and Na⁺ rushes in; potassium flooding out is what brings it back down.",
+      href: "/circuits",
+    },
+    {
+      id: "lab-ap-direction",
+      mode: "circuits",
+      ask: "What forces the spike to travel in one direction?",
+      prompt: "“No new spike can start just behind the travelling one”",
+      options: [
+        "The refractory period",
+        "The myelin sheath",
+        "The synaptic cleft",
+        "The resting potential",
+      ],
+      answer: 0,
+      explain: "Sodium channels behind the spike are inactivated for a few milliseconds — myelin speeds conduction but direction comes from refractoriness.",
+      href: "/circuits",
+    },
+    {
+      id: "lab-span",
+      mode: "mind",
+      ask: "The digit-span lab ends after what stopping rule?",
+      prompt: "“Two consecutive failures at the same length”",
+      options: [
+        "Two consecutive failures at one length",
+        "One failure at any length",
+        "Three failures across the run",
+        "Ninety seconds elapsed",
+      ],
+      answer: 0,
+      explain: "Standard span procedure: the longest length cleared before two straight failures is the span.",
+      href: "/mind",
+    },
+    {
+      id: "lab-stroop",
+      mode: "mind",
+      ask: "What does the Stroop lab actually measure?",
+      prompt: "“Incongruent minus congruent reaction time”",
+      options: [
+        "The interference cost in milliseconds",
+        "Colour blindness severity",
+        "Reading speed in words per minute",
+        "Working memory capacity",
+      ],
+      answer: 0,
+      explain: "The Stroop effect is the RT cost of suppressing the automatic reading response — typically a few hundred milliseconds.",
+      href: "/mind",
+    },
+    {
+      id: "lab-sleep",
+      mode: "circuits",
+      ask: "In the hypnogram, when does deep N3 sleep dominate?",
+      prompt: "“The first two cycles, vanishing after ~3am”",
+      options: [
+        "The first half of the night",
+        "The second half of the night",
+        "Only during REM",
+        "Evenly across all cycles",
+      ],
+      answer: 0,
+      explain: "Slow-wave sleep is front-loaded; the second half belongs to lengthening REM. Early waking between cycles is normal.",
+      href: "/circuits",
+    },
+  ];
 }
 
 export function bankSize(mode: QuizMode): number {

@@ -15,8 +15,9 @@ $shots = @(
   @{ route = "/circuits";             name = "circuits";  w = 1600; h = 1100 },
   @{ route = "/mind";                 name = "mind";      w = 1600; h = 1100 },
   @{ route = "/questions";            name = "questions"; w = 1600; h = 1100 },
-  @{ route = "/mirror";               name = "mirror";    w = 1600; h = 1000 },
-  @{ route = "/recall";               name = "recall";    w = 1600; h = 1100 },
+  @{ route = "/mirror";               name = "mirror";     w = 1600; h = 1000 },
+  @{ route = "/timeline";             name = "timeline";   w = 1600; h = 1100 },
+  @{ route = "/recall";               name = "recall";     w = 1600; h = 1100 },
   @{ route = "/atlas";                name = "atlas-mobile";  w = 420; h = 900 }
 )
 

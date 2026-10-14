@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/page-header";
+import DigitSpan from "@/components/digit-span";
+import Stroop from "@/components/stroop";
+import ReceptiveField from "@/components/receptive-field";
 import { Pin, Plate, Tag } from "@/components/ui";
 import { BIASES, CONCEPTS, EXPERIMENTS, FORGETTING, MEMORY } from "@/data/mind";
 import { STAIN } from "@/lib/stain";
@@ -100,6 +103,20 @@ export default function MindPage() {
               ))}
             </div>
           </div>
+
+          <div className="mt-16" data-reveal>
+            <h3 className="text-[1.6rem] leading-tight text-bone">
+              Run the 1956 experiment on yourself
+            </h3>
+            <p className="prose-measure mt-4 text-[0.95rem] leading-relaxed text-mute">
+              The capacity numbers at the top of this page came from tasks
+              like this one. Three minutes, no account, best score kept on
+              this device.
+            </p>
+            <div className="mt-8">
+              <DigitSpan />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -150,10 +167,37 @@ export default function MindPage() {
               </article>
             ))}
           </div>
+
+          <div className="mt-16" data-reveal>
+            <h3 className="text-[1.6rem] leading-tight text-bone">
+              Feel one working on you
+            </h3>
+            <p className="prose-measure mt-4 text-[0.95rem] leading-relaxed text-mute">
+              Reading about interference is not the same as paying for it.
+              Twenty-four trials, reaction times measured to the
+              millisecond, and a number at the end that is yours.
+            </p>
+            <div className="mt-8">
+              <Stroop />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ── Experiments ───────────────────────────────────────── */}
+      <section className="px-5 py-24 md:px-10 md:py-32">
+        <div className="mx-auto max-w-6xl">
+          <div data-reveal>
+            <h3 className="text-[1.6rem] leading-tight text-bone">Orientation tuning</h3>
+            <p className="prose-measure mt-4 text-[0.95rem] leading-relaxed text-mute">
+              Hubel &amp; Wiesel (1962): V1 neurons fire most for an oriented bar of the right width and position. Build the receptive field below.
+            </p>
+            <div className="mt-8">
+              <ReceptiveField />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="px-5 py-24 md:px-10 md:py-32">
         <div className="mx-auto max-w-6xl">
           <div data-reveal>

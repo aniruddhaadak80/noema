@@ -13,6 +13,7 @@ import {
 import { STAIN } from "@/lib/stain";
 import type { Lobe } from "@/lib/types";
 import { Pin, Tag } from "@/components/ui";
+import LesionSim from "@/components/lesion-sim";
 
 /* Fold linework, laid onto the silhouette. */
 const FOLDS = [
@@ -52,6 +53,11 @@ const CLIP_FOR: Record<string, string> = {
 
 export default function BrainAtlas() {
   const [selected, setSelected] = useState<string>("hippocampus");
+  const [lesionId, setLesionId] = useState<string | null>(null);
+  const lesionRegion = useMemo(
+    () => (lesionId ? REGIONS.find((r) => r.id === lesionId) ?? null : null),
+    [lesionId],
+  );
   const [hovered, setHovered] = useState<string | null>(null);
   const [lobe, setLobe] = useState<Lobe | "all">("all");
   const [copied, setCopied] = useState(false);
@@ -72,6 +78,7 @@ export default function BrainAtlas() {
   const select = (id: string) => {
     setSelected(id);
     window.history.replaceState(null, "", `#${id}`);
+    setLesionId(null);
   };
 
   const order = useMemo(() => REGIONS.map((r) => r.id), []);
@@ -131,7 +138,8 @@ export default function BrainAtlas() {
   const surface = REGIONS.filter((r) => !["cerebellum", "brainstem"].includes(r.lobe));
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-10">
+    <>
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-10">
       {/* ── The plate ───────────────────────────────────────── */}
       <div className="rounded-[1.75rem] bg-white/[0.02] p-1.5 ring-1 ring-white/[0.06]">
         <div className="overflow-hidden rounded-[calc(1.75rem-0.375rem)] bg-tissue shadow-[inset_0_1px_0_rgba(242,239,230,0.05)]">
@@ -350,6 +358,13 @@ export default function BrainAtlas() {
               >
                 {copied ? "Link copied" : "Copy link to region"}
               </button>
+              <button
+                type="button"
+                onClick={() => setLesionId(selected)}
+                className="rounded-full px-3 py-1.5 text-[12px] text-mute ring-1 ring-white/10 transition-colors duration-500 hover:text-bone"
+              >
+                Simulate lesion
+              </button>
               <span className="ml-auto text-[11px] tabular-nums text-dim">
                 {order.indexOf(current.id) + 1} / {order.length}
               </span>
@@ -414,5 +429,10 @@ export default function BrainAtlas() {
         </details>
       </aside>
     </div>
+
+    <div className="mx-auto mt-10 max-w-6xl">
+      <LesionSim region={lesionRegion} onClear={() => setLesionId(null)} />
+    </div>
+    </>
   );
 }
