@@ -65,7 +65,10 @@ const TRACE =
 
 export default function ActionPotential() {
   const [phase, setPhase] = useState(2);
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  });
   const svgRef = useRef<SVGSVGElement>(null);
   const current = PHASES[phase];
 
@@ -73,7 +76,6 @@ export default function ActionPotential() {
     const svg = svgRef.current;
     if (!svg) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setPlaying(false);
       try {
         svg.pauseAnimations();
       } catch {

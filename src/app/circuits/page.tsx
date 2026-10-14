@@ -3,6 +3,7 @@ import PageHeader from "@/components/page-header";
 import ActionPotential from "@/components/action-potential";
 import Hypnogram from "@/components/hypnogram";
 import EegBands from "@/components/eeg-bands";
+import SynapseLab from "@/components/synapse-lab";
 import { Pin, Plate, Tag } from "@/components/ui";
 import {
   CONSCIOUSNESS_THEORIES,
@@ -131,7 +132,15 @@ export default function CircuitsPage() {
         </div>
       </section>
 
-      {/* ── Nuclei ────────────────────────────────────────────── */}
+      <section className="px-5 pb-24 md:px-10 md:pb-32">
+        <div className="mx-auto max-w-6xl">
+          <div data-reveal className="mt-14">
+            <SynapseLab />
+          </div>
+        </div>
+      </section>
+
+
       <section className="px-5 py-24 md:px-10 md:py-32">
         <div className="mx-auto max-w-6xl">
           <div data-reveal>
