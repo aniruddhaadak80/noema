@@ -4,6 +4,7 @@ import "./globals.css";
 import SiteNav from "@/components/site-nav";
 import RevealObserver from "@/components/reveal-observer";
 import Footer from "@/components/footer";
+import Shortcuts from "@/components/shortcuts";
 
 /* Bodoni Moda is the display face because the anatomical atlases it
    descends from were set in Didone — Vesalius and Gray engraved and
@@ -98,6 +99,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         <RevealObserver />
         <SiteNav />
+        <Shortcuts />
         <main id="main" className="flex-1">
           {children}
         </main>

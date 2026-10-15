@@ -61,6 +61,23 @@ export default function BrainAtlas() {
   const [hovered, setHovered] = useState<string | null>(null);
   const [lobe, setLobe] = useState<Lobe | "all">("all");
   const [copied, setCopied] = useState(false);
+  const [favs, setFavs] = useState<string[]>(() => {
+    if (typeof window === "undefined") return [];
+    try {
+      return JSON.parse(window.localStorage.getItem("noema-favs") || "[]");
+    } catch {
+      return [];
+    }
+  });
+
+  const toggleFav = (id: string) => {
+    setFavs((prev) => {
+      const next = prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id];
+      try { window.localStorage.setItem("noema-favs", JSON.stringify(next)); } catch {}
+      return next;
+    });
+  };
+
 
   /* Deep links: /atlas#hippocampus selects the region on load and
      follows the hash afterwards, so entries can link straight here
@@ -360,6 +377,13 @@ export default function BrainAtlas() {
               </button>
               <button
                 type="button"
+                onClick={() => toggleFav(selected)}
+                className="rounded-full px-3 py-1.5 text-[12px] text-mute ring-1 ring-white/10 transition-colors duration-500 hover:text-bone"
+              >
+                {favs.includes(selected) ? "★ Saved" : "☆ Save"}
+              </button>
+              <button
+                type="button"
                 onClick={() => setLesionId(selected)}
                 className="rounded-full px-3 py-1.5 text-[12px] text-mute ring-1 ring-white/10 transition-colors duration-500 hover:text-bone"
               >
@@ -427,6 +451,27 @@ export default function BrainAtlas() {
             ))}
           </ul>
         </details>
+        {favs.length > 0 && (
+          <div className="mt-4">
+            <p className="eyebrow mb-2 text-dim">Saved regions</p>
+            <div className="flex flex-wrap gap-1.5">
+              {favs.map((id) => {
+                const r = REGIONS.find((x) => x.id === id);
+                if (!r) return null;
+                return (
+                  <button
+                    key={id}
+                    type="button"
+                    onClick={() => select(id)}
+                    className="rounded-full bg-white/[0.04] px-2.5 py-1 text-[11px] text-mute ring-1 ring-white/10 transition-colors duration-300 hover:text-bone"
+                  >
+                    {r.name}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </aside>
     </div>
 
