@@ -13,6 +13,7 @@ import {
 import { STAIN } from "@/lib/stain";
 import type { Lobe } from "@/lib/types";
 import { Pin, Tag } from "@/components/ui";
+import ThemeToggle from "@/components/theme-toggle";
 import LesionSim from "@/components/lesion-sim";
 
 /* Fold linework, laid onto the silhouette. */
@@ -389,6 +390,7 @@ export default function BrainAtlas() {
               >
                 Simulate lesion
               </button>
+              <ThemeToggle />
               <span className="ml-auto text-[11px] tabular-nums text-dim">
                 {order.indexOf(current.id) + 1} / {order.length}
               </span>

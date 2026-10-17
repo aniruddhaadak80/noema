@@ -5,6 +5,7 @@ import SiteNav from "@/components/site-nav";
 import RevealObserver from "@/components/reveal-observer";
 import Footer from "@/components/footer";
 import Shortcuts from "@/components/shortcuts";
+import { ThemeProvider } from "@/components/theme-provider";
 
 /* Bodoni Moda is the display face because the anatomical atlases it
    descends from were set in Didone — Vesalius and Gray engraved and
@@ -85,25 +86,27 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${bodoni.variable} ${familjen.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <div className="hemisphere-wash" aria-hidden />
-        <div className="grain" aria-hidden />
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[80] focus:rounded-full focus:bg-bone focus:px-4 focus:py-2 focus:text-sm focus:text-ink"
-        >
-          Skip to content
-        </a>
-        <RevealObserver />
-        <SiteNav />
-        <Shortcuts />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        <ThemeProvider>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+          <div className="hemisphere-wash" aria-hidden />
+          <div className="grain" aria-hidden />
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[80] focus:rounded-full focus:bg-bone focus:px-4 focus:py-2 focus:text-sm focus:text-ink"
+          >
+            Skip to content
+          </a>
+          <RevealObserver />
+          <SiteNav />
+          <Shortcuts />
+          <main id="main" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

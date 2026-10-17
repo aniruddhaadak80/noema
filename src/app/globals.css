@@ -36,6 +36,30 @@
   --ease-drift: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.theme-dark {
+  --color-ink: #06070b;
+  --color-tissue: #0b0d14;
+  --color-panel: #12141d;
+  --color-raised: #171a26;
+  --color-hair: #22262f;
+  --color-hair-lit: #343a4b;
+  --color-bone: #f2efe6;
+  --color-mute: #8b90a2;
+  --color-dim: #5d6273;
+}
+
+.theme-light {
+  --color-ink: #faf7f2;
+  --color-tissue: #f1efe7;
+  --color-panel: #e8e3d8;
+  --color-raised: #dcd1c0;
+  --color-hair: #c9c2b4;
+  --color-hair-lit: #bdb3a3;
+  --color-bone: #0a0b0c;
+  --color-mute: #5d6273;
+  --color-dim: #8b90a2;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

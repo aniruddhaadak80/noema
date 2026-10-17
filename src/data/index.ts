@@ -214,6 +214,22 @@ export const SEARCH_INDEX: SearchEntry[] = [
     blurb: "⌘K from anywhere — regions, molecules, biases, positions",
     stain: "gfp",
   }),
+  entry({
+    id: "tool-bci",
+    title: "Brain–Computer Interface",
+    kind: "Tool",
+    href: "/bci",
+    blurb: "Simulated EEG channels with a movement classifier",
+    stain: "golgi",
+  }),
+  entry({
+    id: "tool-glossary",
+    title: "Glossary",
+    kind: "Tool",
+    href: "/glossary",
+    blurb: "Thirty-three plain-language neuroscience terms",
+    stain: "melanin",
+  }),
 ];
 
 export const SECTIONS = [
@@ -270,5 +286,23 @@ export const SECTIONS = [
     body:
       "Sixteen landmarks from Galen to the present, showing the slow move from speculation to experiment.",
     stain: "golgi" as const,
+  },
+  {
+    href: "/bci",
+    index: "07",
+    title: "Brain–Computer Interface",
+    subtitle: "Ten electrodes, a classifier, and a loop",
+    body:
+      "Simulated EEG channels with a classifier that follows imagined movement. The loop — sense, interpret, act — is real; the numbers here are illustrative.",
+    stain: "golgi" as const,
+  },
+  {
+    href: "/glossary",
+    index: "08",
+    title: "Glossary",
+    subtitle: "Plain-language terms, with honest limits",
+    body:
+      "Thirty-three terms from action potential to working memory, each tagged by category and linked to where it appears in the atlas.",
+    stain: "melanin" as const,
   },
 ];
