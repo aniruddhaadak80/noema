@@ -1,0 +1,26 @@
+{
+  "status": "ok",
+  "deployment": {
+    "id": "dpl_GCGmcM4qFTZHKyhtX9LWP2jkSA41",
+    "url": "https://noema-atlas-jioaiqddz-aniruddha-adaks-projects.vercel.app",
+    "inspectorUrl": "https://vercel.com/aniruddha-adaks-projects/noema-atlas/GCGmcM4qFTZHKyhtX9LWP2jkSA41",
+    "readyState": "READY",
+    "target": "production",
+    "deploymentApiUrl": "https://api.vercel.com/v13/deployments/dpl_GCGmcM4qFTZHKyhtX9LWP2jkSA41"
+  },
+  "message": "Deployment noema-atlas-jioaiqddz-aniruddha-adaks-projects.vercel.app ready.",
+  "next": [
+    {
+      "command": "vercel curl https://noema-atlas-jioaiqddz-aniruddha-adaks-projects.vercel.app",
+      "when": "Verify deployment, including when Deployment Protection is enabled"
+    },
+    {
+      "command": "vercel inspect noema-atlas-jioaiqddz-aniruddha-adaks-projects.vercel.app",
+      "when": "Inspect deployment"
+    },
+    {
+      "command": "vercel deploy --prod",
+      "when": "Promote to production"
+    }
+  ]
+}

@@ -230,6 +230,14 @@ export const SEARCH_INDEX: SearchEntry[] = [
     blurb: "Thirty-three plain-language neuroscience terms",
     stain: "melanin",
   }),
+  entry({
+    id: "tool-compare",
+    title: "Compare two regions",
+    kind: "Tool",
+    href: "/compare",
+    blurb: "Any two of the 31, side by side, shareable by URL",
+    stain: "gfp",
+  }),
 ];
 
 export const SECTIONS = [
@@ -304,5 +312,14 @@ export const SECTIONS = [
     body:
       "Thirty-three terms from action potential to working memory, each tagged by category and linked to where it appears in the atlas.",
     stain: "melanin" as const,
+  },
+  {
+    href: "/compare",
+    index: "09",
+    title: "Compare",
+    subtitle: "Any two regions, side by side",
+    body:
+      "Four hundred and sixty-five possible pairs, each diffed on division, hemisphere, function count, lesion profile, and the vocabulary the two descriptions share.",
+    stain: "gfp" as const,
   },
 ];
