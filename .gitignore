@@ -45,3 +45,17 @@ next-env.d.ts
 # ephemeral screenshot browser profile
 edge-tmp/
 
+
+# local verification logs
+build.log
+build.err
+lint.log
+lint.err
+tsc.log
+tsc.err
+deploy.log
+deploy.err
+dev.log
+dev.err
+preview.log
+preview.err
