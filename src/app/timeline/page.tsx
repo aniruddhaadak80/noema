@@ -11,9 +11,9 @@ export default function TimelinePage() {
   return (
     <main>
       <PageHeader
-        over="register nine \u00b7 History of the field"
+        over="register nine · History of the field"
         title="Timeline"
-        lede="Sixteen landmarks from Galen to the present \u2014 how the picture came together."
+        lede="Sixteen landmarks from Galen to the present — how the picture came together."
         note="Ideas rarely arrive cleanly. Most were resisted before becoming obvious."
         stats={[
           ["16", "landmarks"],
