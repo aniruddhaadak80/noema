@@ -63,6 +63,11 @@ export default function Stroop() {
   const [flash, setFlash] = useState<InkName | null>(null);
   const [done, setDone] = useState<null | { interference: number; best: number | null; improved: boolean }>(null);
   const startRef = useRef(0);
+  /** Index of the trial that has already taken an answer. A trial may be
+   *  answered exactly once — a second keystroke landing inside the 220 ms
+   *  feedback window must not re-answer it, advance the index twice, or
+   *  push a duplicate reaction time into the sample. */
+  const answeredRef = useRef(-1);
 
   const start = useCallback(() => {
     setTrials(buildTrials());
@@ -71,12 +76,15 @@ export default function Stroop() {
     setErrors(0);
     setFlash(null);
     setDone(null);
+    answeredRef.current = -1;
     startRef.current = performance.now();
   }, []);
 
   const answer = useCallback(
     (ink: InkName) => {
       if (trials.length === 0 || done) return;
+      if (answeredRef.current === index) return;
+      answeredRef.current = index;
       const t = trials[index];
       const rt = performance.now() - startRef.current;
       if (ink === t.ink) {
