@@ -39,8 +39,8 @@ export default function EegBands() {
   return (
     <div className="overflow-hidden rounded-[1.75rem] bg-panel ring-1 ring-white/[0.06]">
       <div className="flex items-center justify-between border-b border-hair px-6 py-5 sm:px-8">
-        <p className="eyebrow">EEG bands \u00b7 scalp rhythms</p>
-        <p className="text-[11px] uppercase tracking-[0.14em] text-dim">\u22481s window</p>
+        <p className="eyebrow">EEG bands · scalp rhythms</p>
+        <p className="text-[11px] uppercase tracking-[0.14em] text-dim">≈1s window</p>
       </div>
       <svg viewBox="0 0 280 120" className="w-full px-4 sm:px-6" aria-hidden>
         {[20, 60, 100].map((y) => (
@@ -62,7 +62,7 @@ export default function EegBands() {
           <div key={b.id} className="bg-panel py-2">
             <p className="capitalize text-bone">{b.id}</p>
             <p className="text-dim">
-              {b.f}\u2013{b.f * 2} Hz
+              {b.f}–{b.f * 2} Hz
             </p>
           </div>
         ))}

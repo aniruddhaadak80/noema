@@ -11,7 +11,7 @@ export default function ReceptiveField() {
   return (
     <div className="overflow-hidden rounded-[1.75rem] bg-panel ring-1 ring-white/[0.06]">
       <div className="border-b border-hair px-6 py-5 sm:px-8">
-        <p className="eyebrow">Receptive field \u00b7 V1 simple cell</p>
+        <p className="eyebrow">Receptive field · V1 simple cell</p>
       </div>
       <div className="grid gap-10 px-6 py-8 sm:px-8 md:grid-cols-[1.1fr_1fr]">
         <svg viewBox="0 0 320 320" className="w-full" role="img" aria-label="Gabor-like receptive field">

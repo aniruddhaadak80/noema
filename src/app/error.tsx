@@ -25,7 +25,7 @@ export default function Error({
         </h1>
         <p className="prose-measure mx-auto mt-6 text-mute">
           A client-side error occurred. You can retry without refreshing the
-          whole atlas \u2014 your best scores and favourites stay intact.
+          whole atlas — your best scores and favourites stay intact.
         </p>
         <button
           type="button"

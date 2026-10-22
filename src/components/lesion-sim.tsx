@@ -60,7 +60,7 @@ export default function LesionSim({ region, onClear }: Props) {
               <span className="text-bone">Diaschisis</span> means distant regions can go offline too.
             </li>
             <li>
-              <span className="text-bone">Plasticity</span> matters \u2014 acute vs chronic look very different.
+              <span className="text-bone">Plasticity</span> matters — acute vs chronic look very different.
             </li>
             <li>
               <span className="text-bone">Double dissociations</span>, not single cases, carry the weight.
