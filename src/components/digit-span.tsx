@@ -40,6 +40,10 @@ export default function DigitSpan() {
   const [entry, setEntry] = useState("");
   const [flash, setFlash] = useState<"good" | "bad" | null>(null);
   const timers = useRef<number[]>([]);
+  /** True once the current attempt has been submitted. The recall stage
+   *  stays on screen for a moment after an answer, and a further keystroke
+   *  landing in that window must not answer the same attempt twice. */
+  const submittedRef = useRef(false);
 
   const clearTimers = () => {
     timers.current.forEach((t) => window.clearTimeout(t));
@@ -50,6 +54,7 @@ export default function DigitSpan() {
 
   const begin = useCallback((len: number) => {
     clearTimers();
+    submittedRef.current = false;
     setEntry("");
     setFlash(null);
     const digits = freshDigits(len);
@@ -90,6 +95,8 @@ export default function DigitSpan() {
 
   const submit = useCallback(
     (value: string) => {
+      if (submittedRef.current) return;
+      submittedRef.current = true;
       setStage((s) => {
         if (s.name !== "recall") return s;
         if (value === s.digits) {
